@@ -1,4 +1,4 @@
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Contador {
@@ -7,26 +7,27 @@ public class Contador {
 	 */
 	public static void main(String[] args) {
 		Scanner terminal = new Scanner(System.in);
-		System.out.println("Digite o primeiro parâmetro");
-		int parametroUm = terminal.nextInt();
-		System.out.println("Digite o segundo parâmetro");
-		int parametroDois = terminal.nextInt();
-		System.out.println();
-
-		terminal.close();
 	
 		try {
+			
+			System.out.println("Digite o primeiro parâmetro");
+			int parametroUm = terminal.nextInt();
+			System.out.println("Digite o segundo parâmetro");
+			int parametroDois = terminal.nextInt();
+			System.out.println();
+
+			terminal.close();
 			//chamando o método contendo a lógica de contagem
 			contar(parametroUm, parametroDois);
-		
+			
 		}
 		catch ( ParametrosIvalidosException e ) {
 			//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
 			System.err.println(e);
 		}
-		/*catch ( InputMismatchException e ){
-			System.out.println("Digite um número válido.");
-		}*/
+		catch ( InputMismatchException e ){
+			System.out.println("Por favor digite um número válido.");
+		}
 	}
 	static void contar(int parametroUm, int parametroDois ) throws ParametrosIvalidosException  {
 		//validar se parametroUm é MAIOR que parametroDois e lançar a exceção
