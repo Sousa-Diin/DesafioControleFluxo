@@ -1,28 +1,45 @@
+
+import java.util.Scanner;
+
 public class Contador {
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Scanner terminal = new Scanner(System.in);
 		System.out.println("Digite o primeiro parâmetro");
-		int parametroUm = terminal.??;
+		int parametroUm = terminal.nextInt();
 		System.out.println("Digite o segundo parâmetro");
-		int parametroDois = terminal.??;
-		
+		int parametroDois = terminal.nextInt();
+		System.out.println();
+
+		terminal.close();
+	
 		try {
 			//chamando o método contendo a lógica de contagem
 			contar(parametroUm, parametroDois);
 		
-		}catch (? exception) {
-			//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
 		}
-		
+		catch ( ParametrosIvalidosException e ) {
+			//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
+			System.err.println(e);
+		}
+		/*catch ( InputMismatchException e ){
+			System.out.println("Digite um número válido.");
+		}*/
 	}
-	static void contar(int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
+	static void contar(int parametroUm, int parametroDois ) throws ParametrosIvalidosException  {
 		//validar se parametroUm é MAIOR que parametroDois e lançar a exceção
         if ( parametroUm >= parametroDois ){
-            System.out.println("O primeiro parametro precisar ser menor que o segundo");
-        }
+            //System.err.println("O primeiro parametro precisar ser menor que o segundo");
+			throw new ParametrosIvalidosException ();
+		}
 		
 		int contagem = parametroDois - parametroUm;
-        System.out.println("Condição aceita");
 		//realizar o for para imprimir os números com base na variável contagem
+		for (int i = 1; i <= contagem;i++){
+			
+			System.out.println("Imprima o numero " + i);
+		}
 	}
 }
